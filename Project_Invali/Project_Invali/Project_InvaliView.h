@@ -51,7 +51,6 @@ public:
 	afx_msg void OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
 //	HTREEITEM m_treeControl;
 	CTreeCtrl m_treeControl;
-	afx_msg void OnTvnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 #ifndef _DEBUG  // Project_InvaliView.cpp의 디버그 버전
