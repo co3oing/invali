@@ -25,6 +25,7 @@ BEGIN_MESSAGE_MAP(CProject_InvaliView, CFormView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_NOTIFY(NM_CLICK, IDC_TREE_CONTROL, &CProject_InvaliView::OnClickTreeControl)
+	ON_NOTIFY(TVN_SELCHANGED, IDC_TREE_CONTROL, &CProject_InvaliView::OnTvnSelchangedTreeControl)
 END_MESSAGE_MAP()
 
 // CProject_InvaliView 생성/소멸
@@ -109,5 +110,13 @@ void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 														  // 시험용 문자 출력.
 	AfxMessageBox(m_treeControl.GetItemText(hItem_dc));
 
+	*pResult = 0;
+}
+
+
+void CProject_InvaliView::OnTvnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	*pResult = 0;
 }
