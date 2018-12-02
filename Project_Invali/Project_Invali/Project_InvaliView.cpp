@@ -24,6 +24,7 @@ IMPLEMENT_DYNCREATE(CProject_InvaliView, CFormView)
 BEGIN_MESSAGE_MAP(CProject_InvaliView, CFormView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_NOTIFY(NM_CLICK, IDC_TREE_CONTROL, &CProject_InvaliView::OnClickTreeControl)
 END_MESSAGE_MAP()
 
 // CProject_InvaliView 생성/소멸
@@ -42,6 +43,7 @@ CProject_InvaliView::~CProject_InvaliView()
 void CProject_InvaliView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_TREE_CONTROL, m_treeControl);
 }
 
 BOOL CProject_InvaliView::PreCreateWindow(CREATESTRUCT& cs)
@@ -95,4 +97,17 @@ CProject_InvaliDoc* CProject_InvaliView::GetDocument() const // 디버그되지 않은 
 #endif //_DEBUG
 
 
-// CProject_InvaliView 메시지 처리기
+void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CPoint p;
+	GetCursorPos(&p);
+	UINT flag;
+	m_treeControl.ScreenToClient(&p);// 마우스좌표를 트리좌표로 변환하고, 
+	HTREEITEM hItem_dc = m_treeControl.HitTest(p, &flag); // HitTest 함수로 트리아이템 받아. 
+
+														  // 시험용 문자 출력.
+	AfxMessageBox(m_treeControl.GetItemText(hItem_dc));
+
+	*pResult = 0;
+}

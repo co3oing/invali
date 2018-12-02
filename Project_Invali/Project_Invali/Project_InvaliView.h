@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxcmn.h"
 
 
 class CProject_InvaliView : public CFormView
@@ -46,6 +47,10 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
+//	HTREEITEM m_treeControl;
+	CTreeCtrl m_treeControl;
 };
 
 #ifndef _DEBUG  // Project_InvaliView.cpp의 디버그 버전

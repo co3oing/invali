@@ -51,27 +51,27 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWndEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
-
+	/* 툴바 삭제
 	BOOL bNameValid;
 
 	if (!m_wndMenuBar.Create(this))
 	{
-		TRACE0("메뉴 모음을 만들지 못했습니다.\n");
-		return -1;      // 만들지 못했습니다.
+	TRACE0("메뉴 모음을 만들지 못했습니다.\n");
+	return -1;      // 만들지 못했습니다.
 	}
 
 	m_wndMenuBar.SetPaneStyle(m_wndMenuBar.GetPaneStyle() | CBRS_SIZE_DYNAMIC | CBRS_TOOLTIPS | CBRS_FLYBY);
 
 	// 메뉴 모음을 활성화해도 포커스가 이동하지 않게 합니다.
 	CMFCPopupMenu::SetForceMenuFocus(FALSE);
-
-	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
+	*/
+	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD |/* WS_VISIBLE | */CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(theApp.m_bHiColorIcons ? IDR_MAINFRAME_256 : IDR_MAINFRAME))
 	{
 		TRACE0("도구 모음을 만들지 못했습니다.\n");
 		return -1;      // 만들지 못했습니다.
 	}
-
+	/* 툴바 삭제
 	CString strToolBarName;
 	bNameValid = strToolBarName.LoadString(IDS_TOOLBAR_STANDARD);
 	ASSERT(bNameValid);
@@ -84,21 +84,27 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// 사용자 정의 도구 모음 작업을 허용합니다.
 	InitUserToolbars(NULL, uiFirstUserToolBarId, uiLastUserToolBarId);
-
+	*/
 	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("상태 표시줄을 만들지 못했습니다.\n");
 		return -1;      // 만들지 못했습니다.
 	}
-	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
+	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators) / sizeof(UINT));
 
 	// TODO: 도구 모음 및 메뉴 모음을 도킹할 수 없게 하려면 이 다섯 줄을 삭제하십시오.
+	/* 툴바 삭제
 	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
+	*/
+	// Remove and destroy the old menu
+	SetMenu(NULL);
+	::DestroyMenu(GetMenu()->GetSafeHmenu());
 
+	m_wndToolBar.EnableWindow(FALSE);
 
 	// Visual Studio 2005 스타일 도킹 창 동작을 활성화합니다.
 	CDockingManager::SetDockingMode(DT_SMART);
@@ -108,7 +114,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	OnApplicationLook(theApp.m_nAppLook);
 
 	// 도구 모음 및 도킹 창 메뉴 바꾸기를 활성화합니다.
-	EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
+	// 툴바 삭제 EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
 
 	// 빠른(<Alt> 키를 누른 채 끌기) 도구 모음 사용자 지정을 활성화합니다.
 	CMFCToolBar::EnableQuickCustomization();
