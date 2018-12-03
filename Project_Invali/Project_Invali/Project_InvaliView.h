@@ -57,6 +57,7 @@ public:
 	HTREEITEM m_hRoot2;
 	bool m_ClickedRootNode;
 	CString m_strSelectedNode;
+	afx_msg void OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 #ifndef _DEBUG  // Project_InvaliView.cpp의 디버그 버전
