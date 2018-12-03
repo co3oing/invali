@@ -52,6 +52,7 @@ void CProject_InvaliView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_TREE_CONTROL, m_treeControl);
+	DDX_Control(pDX, IDC_EXPLORER, m_webControl);
 }
 
 BOOL CProject_InvaliView::PreCreateWindow(CREATESTRUCT& cs)
@@ -189,7 +190,8 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 	STR_SWITCH(strItem)
 		CASE(_T("전체"))
 		// code
-
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("장학"))
 		// code
