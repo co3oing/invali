@@ -56,7 +56,6 @@ public:
 	HTREEITEM m_hRoot1;
 	HTREEITEM m_hRoot2;
 	bool m_ClickedRootNode;
-	afx_msg void OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
 	CString m_strSelectedNode;
 };
 

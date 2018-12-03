@@ -25,7 +25,6 @@ BEGIN_MESSAGE_MAP(CProject_InvaliView, CFormView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_NOTIFY(NM_CLICK, IDC_TREE_CONTROL, &CProject_InvaliView::OnClickTreeControl)
-	ON_NOTIFY(TVN_SELCHANGED, IDC_TREE_CONTROL, &CProject_InvaliView::OnSelchangedTreeControl)
 END_MESSAGE_MAP()
 
 // CProject_InvaliView 생성/소멸
@@ -143,18 +142,6 @@ void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 	m_treeControl.ScreenToClient(&p);// 마우스좌표를 트리좌표로 변환하고, 
 	HTREEITEM hItem_dc = m_treeControl.HitTest(p, &flag); // HitTest 함수로 트리아이템 받아. 
 
-														  // 시험용 문자 출력.
-
-	*pResult = 0;
-}
-
-
-
-
-
-
-void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
-{
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_hSelectedNode = pNMTreeView->itemNew.hItem;
@@ -165,16 +152,16 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 		m_ClickedRootNode = TRUE;
 		m_hSelectedNode = m_hRoot;
 		if (m_strSelectedNode == "SoftWare Notice")
-	{
-		m_ClickedRootNode = TRUE;
-		m_hSelectedNode = m_hRoot1;
-		
-		if (m_strSelectedNode == "SSU Fun-System")
 		{
 			m_ClickedRootNode = TRUE;
-			m_hSelectedNode = m_hRoot2;
+			m_hSelectedNode = m_hRoot1;
+
+			if (m_strSelectedNode == "SSU Fun-System")
+			{
+				m_ClickedRootNode = TRUE;
+				m_hSelectedNode = m_hRoot2;
+			}
 		}
-	}
 	}
 
 	if (m_ClickedRootNode == TRUE)
@@ -182,5 +169,9 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 		m_treeControl.Expand(m_hSelectedNode, TVE_TOGGLE);
 	}
 	UpdateData(FALSE);
+
 	*pResult = 0;
 }
+
+
+
