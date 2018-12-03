@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CProject_InvaliView, CFormView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_NOTIFY(NM_CLICK, IDC_TREE_CONTROL, &CProject_InvaliView::OnClickTreeControl)
+	ON_NOTIFY(TVN_SELCHANGED, IDC_TREE_CONTROL, &CProject_InvaliView::OnSelchangedTreeControl)
 END_MESSAGE_MAP()
 
 // CProject_InvaliView 생성/소멸
@@ -179,3 +180,68 @@ void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 
+
+
+void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CString strItem = m_treeControl.GetItemText(pNMTreeView->itemNew.hItem);
+	STR_SWITCH(strItem)
+		CASE(_T("전체"))
+		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
+		BREAK
+		CASE(_T("장학"))
+		// code
+		BREAK
+		CASE(_T("국제 교류"))
+		// code
+		BREAK
+		CASE(_T("외국인 유학생"))
+		// code
+		BREAK
+		CASE(_T("모집,채용"))
+		// code
+		BREAK
+		CASE(_T("교내 행사"))
+		// code
+		BREAK
+		CASE(_T("교외 행사"))
+		// code
+		BREAK
+		CASE(_T("봉사"))
+		// code
+		BREAK
+		CASE(_T("창의"))
+		// code
+		BREAK
+		CASE(_T("융합"))
+		// code
+		BREAK
+		CASE(_T("공동체"))
+		// code
+		BREAK
+		CASE(_T("의사소통"))
+		// code
+		BREAK
+		CASE(_T("리더십"))
+		// code
+		BREAK
+		CASE(_T("글로벌"))
+		// code
+		BREAK
+		CASE(_T("학부 공지사항"))
+		// code
+		BREAK
+		CASE(_T("취업 정보"))
+		// code
+		BREAK
+		CASE(_T("한국 장학재단"))
+		// code
+		BREAK
+		END_SWITCH;
+
+	*pResult = 0;
+}
