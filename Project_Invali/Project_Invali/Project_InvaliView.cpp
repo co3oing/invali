@@ -25,12 +25,15 @@ BEGIN_MESSAGE_MAP(CProject_InvaliView, CFormView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_NOTIFY(NM_CLICK, IDC_TREE_CONTROL, &CProject_InvaliView::OnClickTreeControl)
+	ON_NOTIFY(TVN_SELCHANGED, IDC_TREE_CONTROL, &CProject_InvaliView::OnSelchangedTreeControl)
 END_MESSAGE_MAP()
 
 // CProject_InvaliView 생성/소멸
 
 CProject_InvaliView::CProject_InvaliView()
 	: CFormView(IDD_PROJECT_INVALI_FORM)
+	, m_ClickedRootNode(false)
+	, m_strSelectedNode(_T(""))
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -57,8 +60,42 @@ BOOL CProject_InvaliView::PreCreateWindow(CREATESTRUCT& cs)
 void CProject_InvaliView::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
+	UpdateData(TRUE);
+	m_hRoot = m_treeControl.InsertItem(_T("U-Saint SSU Notice"), 0, TVI_ROOT);
+	m_treeControl.InsertItem(_T("전체"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("학사"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("장학"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("국제 교류"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("외국인 유학생"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("모집,채용"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("교내 행사"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("교외 행사"), m_hRoot, TVI_LAST);
+	m_treeControl.InsertItem(_T("봉사"), m_hRoot, TVI_LAST);
+	m_treeControl.Expand(m_hRoot, TVE_EXPAND);
+
+
+	m_hRoot1 = m_treeControl.InsertItem(_T("SSU Fun-System"), 0, TVI_ROOT);
+	m_treeControl.InsertItem(_T("창의"), m_hRoot1, TVI_LAST);
+	m_treeControl.InsertItem(_T("융합"), m_hRoot1, TVI_LAST);
+	m_treeControl.InsertItem(_T("공동체"), m_hRoot1, TVI_LAST);
+	m_treeControl.InsertItem(_T("의사소통"), m_hRoot1, TVI_LAST);
+	m_treeControl.InsertItem(_T("리더십"), m_hRoot1, TVI_LAST);
+	m_treeControl.InsertItem(_T("글로벌"), m_hRoot1, TVI_LAST);
+	m_treeControl.Expand(m_hRoot1, TVE_EXPAND);
+
+	m_hRoot2 = m_treeControl.InsertItem(_T("SoftWare Notice"), 0, TVI_ROOT);
+	m_treeControl.InsertItem(_T("학부 공지사항"), m_hRoot2, TVI_LAST);
+	m_treeControl.InsertItem(_T("취업 정보"), m_hRoot2, TVI_LAST);
+	m_treeControl.Expand(m_hRoot2, TVE_EXPAND);
+
+	m_treeControl.InsertItem(_T("한국 장학재단"), 0, TVI_ROOT);
+
+	UpdateData(FALSE);
+
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
+
+
 
 }
 
@@ -107,7 +144,43 @@ void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 	HTREEITEM hItem_dc = m_treeControl.HitTest(p, &flag); // HitTest 함수로 트리아이템 받아. 
 
 														  // 시험용 문자 출력.
-	AfxMessageBox(m_treeControl.GetItemText(hItem_dc));
 
+	*pResult = 0;
+}
+
+
+
+
+
+
+void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	m_hSelectedNode = pNMTreeView->itemNew.hItem;
+
+	m_strSelectedNode = m_treeControl.GetItemText(m_hSelectedNode);
+	if (m_strSelectedNode == "U-Saint SSU Notice")
+	{
+		m_ClickedRootNode = TRUE;
+		m_hSelectedNode = m_hRoot;
+		if (m_strSelectedNode == "SoftWare Notice")
+	{
+		m_ClickedRootNode = TRUE;
+		m_hSelectedNode = m_hRoot1;
+		
+		if (m_strSelectedNode == "SSU Fun-System")
+		{
+			m_ClickedRootNode = TRUE;
+			m_hSelectedNode = m_hRoot2;
+		}
+	}
+	}
+
+	if (m_ClickedRootNode == TRUE)
+	{
+		m_treeControl.Expand(m_hSelectedNode, TVE_TOGGLE);
+	}
+	UpdateData(FALSE);
 	*pResult = 0;
 }
