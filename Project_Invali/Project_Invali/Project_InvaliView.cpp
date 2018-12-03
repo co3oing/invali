@@ -138,9 +138,7 @@ void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	CPoint p;
 	GetCursorPos(&p);
-	UINT flag;
-	m_treeControl.ScreenToClient(&p);// 마우스좌표를 트리좌표로 변환하고, 
-	HTREEITEM hItem_dc = m_treeControl.HitTest(p, &flag); // HitTest 함수로 트리아이템 받아. 
+	m_treeControl.ScreenToClient(&p);// 마우스좌표를 트리좌표로 변환하고,  // HitTest 함수로 트리아이템 받아. 
 
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
