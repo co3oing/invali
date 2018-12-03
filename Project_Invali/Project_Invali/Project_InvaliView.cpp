@@ -234,6 +234,8 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 		BREAK
 		CASE(_T("학부 공지사항"))
 		// code
+		CComVariant var(_T("https://sw.ssu.ac.kr/"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("취업 정보"))
 		// code
