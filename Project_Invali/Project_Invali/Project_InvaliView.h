@@ -4,6 +4,7 @@
 
 #pragma once
 #include "afxcmn.h"
+#include "CWebBrowser2.h"
 
 
 class CProject_InvaliView : public CFormView
@@ -57,7 +58,8 @@ public:
 	HTREEITEM m_hRoot2;
 	bool m_ClickedRootNode;
 	CString m_strSelectedNode;
-	afx_msg void OnTvnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
+	CWebBrowser2 m_webControl;
 };
 
 #ifndef _DEBUG  // Project_InvaliView.cpp의 디버그 버전

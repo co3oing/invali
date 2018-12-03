@@ -10,6 +10,7 @@
 
 #include "Project_InvaliDoc.h"
 #include "Project_InvaliView.h"
+#include "CWebBrowser2.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
