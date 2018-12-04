@@ -181,7 +181,6 @@ void CProject_InvaliView::OnClickTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 
-
 void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
@@ -189,30 +188,49 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 	CString strItem = m_treeControl.GetItemText(pNMTreeView->itemNew.hItem);
 	STR_SWITCH(strItem)
 		CASE(_T("전체"))
+		// code 
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
+		BREAK // 
+		CASE(_T("학사"))
 		// code
 		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
 		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("장학"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("국제 교류"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("외국인 유학생"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("모집,채용"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("교내 행사"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("교외 행사"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("봉사"))
 		// code
+		CComVariant var(_T("http://ssu.ac.kr/web/kor/plaza_d_01"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
 		BREAK
 		CASE(_T("창의"))
 		// code
@@ -234,6 +252,11 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 		BREAK
 		CASE(_T("학부 공지사항"))
 		// code
+		CComVariant var(_T("https://sw.ssu.ac.kr/"));
+		m_webControl.Navigate2(&var, NULL, NULL, NULL, NULL);
+		
+
+
 		BREAK
 		CASE(_T("취업 정보"))
 		// code
@@ -245,3 +268,6 @@ void CProject_InvaliView::OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResul
 
 	*pResult = 0;
 }
+BEGIN_EVENTSINK_MAP(CProject_InvaliView, CFormView)
+//	ON_EVENT(CProject_InvaliView, IDC_EXPLORER, 259, CProject_InvaliView::DocumentCompleteExplorer, VTS_DISPATCH VTS_PVARIANT)
+END_EVENTSINK_MAP()
