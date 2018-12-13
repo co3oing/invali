@@ -3,7 +3,8 @@
 //
 
 #pragma once
-
+#include "HtmlView.h"
+#include "Project_InvaliView.h"
 class CMainFrame : public CFrameWndEx
 {
 	
@@ -16,6 +17,9 @@ public:
 
 // 작업입니다.
 public:
+	CSplitterWnd m_wndSplitter;
+	CProject_InvaliView m_LeftTreeView;
+	HtmlView m_RightHtmlView;
 
 // 재정의입니다.
 public:
@@ -45,6 +49,7 @@ protected:
 	afx_msg void OnUpdateApplicationLook(CCmdUI* pCmdUI);
 	DECLARE_MESSAGE_MAP()
 
+	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 };
 
 

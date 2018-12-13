@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CWebBrowser2.h" />
+    <ClInclude Include="HtmlView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Project_Invali.h" />
     <ClInclude Include="Project_InvaliDoc.h" />
@@ -196,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CWebBrowser2.cpp" />
+    <ClCompile Include="HtmlView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Project_Invali.cpp" />
     <ClCompile Include="Project_InvaliDoc.cpp" />

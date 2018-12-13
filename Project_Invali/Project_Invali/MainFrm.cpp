@@ -63,6 +63,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMenuBar.SetPaneStyle(m_wndMenuBar.GetPaneStyle() | CBRS_SIZE_DYNAMIC | CBRS_TOOLTIPS | CBRS_FLYBY);
 
 	// 메뉴 모음을 활성화해도 포커스가 이동하지 않게 합니다.
+
 	CMFCPopupMenu::SetForceMenuFocus(FALSE);
 	*/
 	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD |/* WS_VISIBLE | */CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
