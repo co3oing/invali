@@ -5,7 +5,7 @@
 #pragma once
 #include "afxcmn.h"
 #include "CWebBrowser2.h"
-
+#include "Project_InvaliDoc.h"
 
 class CProject_InvaliView : public CFormView
 {
