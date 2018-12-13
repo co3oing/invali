@@ -42,7 +42,7 @@
     <ClInclude Include="CWebBrowser2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HtmlView.h">
+    <ClInclude Include="test_Html.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClCompile Include="CWebBrowser2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HtmlView.cpp">
+    <ClCompile Include="test_Html.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
