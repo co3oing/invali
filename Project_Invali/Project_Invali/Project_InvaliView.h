@@ -60,6 +60,8 @@ public:
 	CString m_strSelectedNode;
 	afx_msg void OnSelchangedTreeControl(NMHDR *pNMHDR, LRESULT *pResult);
 	CWebBrowser2 m_webControl;
+	DECLARE_EVENTSINK_MAP()
+//	void DocumentCompleteExplorer(LPDISPATCH pDisp, VARIANT* URL);
 };
 
 #ifndef _DEBUG  // Project_InvaliView.cpp의 디버그 버전
